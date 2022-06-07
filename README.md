@@ -1,2 +1,2 @@
 # lib-nodejs-markdown
-Script desenvolvido para análise e correção de links em markdown de um blog.
+Script developed to analyze and correct links in a blog's markdown.
