@@ -1,8 +1,13 @@
-// O usuário passará pela linha de comando o local do arquivo com o texto.
+const chalk = require('chalk');
 
-const pegaArquivo = require('./index')
-const caminho = process.argv;
+const getFile = require('./index')
+const commandPath = process.argv;
 
-console.log(pegaArquivo(caminho[2]));
+function textProcess(filePath){
+    const result = getFile(filePath[2]);
+    console.log(chalk.yellow('lista de links'), result)
+}
 
-// Exemplo de execução: node cli.js ./arquivos/texto1.md
+
+textProcess(commandPath)
+

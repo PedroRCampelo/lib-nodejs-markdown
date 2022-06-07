@@ -2,31 +2,30 @@ const text = require("body-parser/lib/types/text");
 const chalk = require("chalk");
 const fs = require("fs");
 
-function extraiLinks(texto) {
+function getLinksFromText(text) {
   const regex = /\[([^\]]*)\]\((https?:\/\/[^$#\s].[^\s]*)\)/gm;
-  const arrayResultados = [];
+  const arrayResult = [];
   let temp;
 
-  // enquanto o valor de temp for diferente de null vamos empurrar para o array de resultados um obj quem tem como chave o indice 1 (nome do site) e por valor o indice 2 (link do site)
-  while ((temp = regex.exec(texto)) !== null) {
-    arrayResultados.push({ [temp[1]]: temp[2] });
+  
+  while ((temp = regex.exec(text)) !== null) {
+    arrayResult.push({ [temp[1]]: temp[2] });
   }
   
-  return arrayResultados
+  return arrayResult
 }
 
-function trataErro(erro) {
-  throw new Error(chalk.red(erro.code, "erro no caminho do arquivo"));
+function handleError(error) {
+  throw new Error(chalk.red(error.code, "erro no caminho do arquivo"));
 }
 
-async function pegaArquivo(caminhoDoArquivo) {
+async function getFile(filePath) {
   try {
-    const data = await fs.promises.readFile(caminhoDoArquivo, "utf-8");
-    console.log(extraiLinks(data));
+    const data = await fs.promises.readFile(filePath, "utf-8");
+    console.log(getLinksFromText(data));
   } catch (err) {
-    trataErro(err);
+    handleError(err);
   }
 }
 
-// Executaremos em outro arquivo
-module.exports = pegaArquivo;
+module.exports = getFile;
