@@ -9,7 +9,7 @@ async function textProcess(filePath){
 
     if(commandPath[3] === 'validate'){
 
-        console.log(chalk.yellow('Links validados'), URLsValidation(result))    
+        console.log(chalk.yellow('Links validados'), await URLsValidation(result))    
     }
     else{
         console.log(chalk.yellow('lista de links'), result)
