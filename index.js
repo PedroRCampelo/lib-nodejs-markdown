@@ -22,7 +22,8 @@ function handleError(error) {
 async function getFile(filePath) {
   try {
     const data = await fs.promises.readFile(filePath, "utf-8");
-    console.log(getLinksFromText(data));
+    return getLinksFromText(data);
+    
   } catch (err) {
     handleError(err);
   }
