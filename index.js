@@ -12,7 +12,7 @@ function getLinksFromText(text) {
     arrayResult.push({ [temp[1]]: temp[2] });
   }
   
-  return arrayResult
+  return arrayResult.length === 0 ? 'nao ha links' : arrayResult
 }
 
 function handleError(error) {
